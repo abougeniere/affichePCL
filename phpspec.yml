@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: affichePCL
+        psr4_prefix: affichePCL
+        src_path: app
