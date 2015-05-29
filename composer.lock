@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3f93dc929a473c1891c48ec815c9aa2a",
+    "hash": "909252eac655acc3b86a1964f19f47f7",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -587,6 +587,62 @@
                 "laravel"
             ],
             "time": "2015-03-13 13:27:55"
+        },
+        {
+            "name": "league/csv",
+            "version": "7.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/csv.git",
+                "reference": "ca5242603b75a9557c675e34fd70a8cb32d42465"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/csv/zipball/ca5242603b75a9557c675e34fd70a8cb32d42465",
+                "reference": "ca5242603b75a9557c675e34fd70a8cb32d42465",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "7.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Csv\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://github.com/nyamsprod/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Csv data manipulation made easy in PHP",
+            "homepage": "http://csv.thephpleague.com",
+            "keywords": [
+                "csv",
+                "export",
+                "filter",
+                "import",
+                "read",
+                "write"
+            ],
+            "time": "2015-05-20 12:55:53"
         },
         {
             "name": "league/flysystem",

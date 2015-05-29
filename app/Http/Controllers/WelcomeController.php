@@ -1,5 +1,9 @@
 <?php namespace affichePCL\Http\Controllers;
 
+use League\Csv\Reader;
+use League\Csv\Writer;
+
+
 class WelcomeController extends Controller {
 
 	/*
@@ -18,11 +22,12 @@ class WelcomeController extends Controller {
 	 *
 	 * @return void
 	 */
+    /*
 	public function __construct()
 	{
 		$this->middleware('guest');
 	}
-
+*/
 	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -30,7 +35,28 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
+        echo getcwd() . "\n";
+
+
+        $reader = Reader::createFromPath('uploads/pcl.csv');
+        $reader->setDelimiter(";");
+        /*dd($reader);
+        foreach ($reader as $index => $row) {
+        echo ($row[0] ."<br>");
+
+            //do something meaningfull here with $row !!
+            //$row is an array where each item represent a CSV data cell
+            //$index is the CSV row index
+        }
+//the $reader object will use the 'r+' open mode as no `open_mode` parameter was supplied.
+       // $writer = Writer::createFromPath(new SplFileObject('/path/to/your/csv/file.csv', 'a+'), 'w');
+//the $writer object open mode will be 'w'!!
+
 		return view('welcome');
+        //return View::make('hello', array('theLocation' =>  'NYC', 'theWeather'=> 'stormy', 'theColors' => $theColors));
+        */
+        return View::make('welcome', array('datas' => $reader->getDelimiter()));
+        //return view('welcome', [$reader]);
 	}
 
 }
