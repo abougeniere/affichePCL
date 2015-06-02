@@ -64,16 +64,28 @@ class WelcomeController extends Controller {
 
         //return view('welcome', ['name' => $test]);
 
-        $data = $reader->fetchAll();
+        $data = $reader
+            ->addFilter(function ($row) {
+                return "97812014M4S"!= $row[0]; //we are looking for the year 2010
+            })
+            ->setLimit(20) //we just want the first 20 results
+            ->toHTML('table-csv-data with-header');
+            //->fetchAll();
+
+        //$data = $reader->fetchAll();
+
+        //$data = $reader->toHTML('table-csv-data with-header');
+
         //print_r ($data);
-        $data=array(1,2,3);
+        //$data=array(1,2,3);
 
         //$data = $reader->fetchAssoc();
 
         //\Debugbar::info(var_dump($data));
         //\Debugbar::error('Something is definitely going wrong.');
         //\Debugbar::error($reader);
-        return view('welcome')->with('data', $data);
+        return view('welcome')->with('data', $data, 'obj',$data);
+        //return view('welcome')->with('data', $data[0], 'obj',$data);
 	}
 
 }
