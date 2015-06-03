@@ -4,6 +4,15 @@
 
     <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
+    <!-- rapyd -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    {!! Rapyd::head() !!}
+    <!-- rapyd -->
+
+</head>
     <style>
         body {
             margin: 0;
@@ -38,10 +47,17 @@
     </style>
 </head>
 <body>
+<hr>
+
+<p>
 
 
 
-    {!! $data !!}
+    {!! $grid !!}
+
+
+
+</p>
 
 </body>
 </html>

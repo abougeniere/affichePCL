@@ -2,9 +2,15 @@
 
 
 
+
+
+use Illuminate\Support\Facades\View;
 use League\Csv\Reader;
 use League\Csv\Writer;
-
+use Zofe\Rapyd\Facades\DataSet;
+use Zofe\Rapyd\Facades\DataGrid;
+use Zofe\Rapyd\Facades\DataForm;
+use Zofe\Rapyd\Facades\DataEdit;
 
 class WelcomeController extends Controller {
 
@@ -64,28 +70,37 @@ class WelcomeController extends Controller {
 
         //return view('welcome', ['name' => $test]);
 
+
+
         $data = $reader
             ->addFilter(function ($row) {
                 return "97812014M4S"!= $row[0]; //we are looking for the year 2010
             })
             ->setLimit(20) //we just want the first 20 results
-            ->toHTML('table-csv-data with-header');
-            //->fetchAll();
+            ->fetchAll();
+        //->toHTML('table-csv-data with-header');
+        //dd($data);
 
-        //$data = $reader->fetchAll();
+        $headers = $reader->fetchOne();
+        //dd($headers);
 
-        //$data = $reader->toHTML('table-csv-data with-header');
+        $dataset = DataSet::source($data)->paginate(10)->getSet();
+        //dd($dataset);
 
-        //print_r ($data);
-        //$data=array(1,2,3);
+        //var_dump($dataset);
+        //return view('welcome',$dataset);
 
-        //$data = $reader->fetchAssoc();
+        $grid = DataGrid::source($data)->getSet();
 
-        //\Debugbar::info(var_dump($data));
-        //\Debugbar::error('Something is definitely going wrong.');
-        //\Debugbar::error($reader);
-        return view('welcome')->with('data', $data, 'obj',$data);
-        //return view('welcome')->with('data', $data[0], 'obj',$data);
+
+
+        //$grid = DataGrid::source($data);
+        //dd($grid);
+
+$i=array(1,2,3);
+        return view('welcome',compact('grid'));
+        //return view('welcome',$grid);
+
 	}
 
 }
