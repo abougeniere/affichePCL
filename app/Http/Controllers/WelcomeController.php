@@ -42,7 +42,7 @@ class WelcomeController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
+    {
         echo getcwd() . "\n";
 
 
@@ -58,13 +58,15 @@ class WelcomeController extends Controller {
         $headers = $reader->fetchOne();
         //dd($headers);
 
-        $dataset = DataSet::source($data)->getSet();
+        $dataset = DataSet::source($data)->paginate(10)->getSet();
         //dd($dataset);
 
         $grid = DataGrid::source($dataset);
         //dd($grid);
 
-        return view('welcome',$grid);
+        //return view('welcome')->with('grid', $grid);
+        //return view('welcome', ['dataset' => $dataset]);
+        return view('welcome')->with('dataset', $dataset);
 
 	}
 

@@ -53,7 +53,21 @@
 
 
 
-    {{ $grid }}
+<p>
+    //cycle
+    @foreach ($dataset->data as $item)
+
+        {{ $item[0] }}<br />
+        {{ $item[1] }}<br />
+
+
+    @endforeach
+
+    {{ $dataset->links() }} <br />
+
+    //sort link
+    {{ $dataset->orderbyLink('title', 'asc') }} <br />
+</p>
 
 
 
