@@ -54,6 +54,7 @@
 
 
 <p>
+    <!--
     //cycle
     @foreach ($dataset->data as $item)
 
@@ -67,6 +68,8 @@
 
     //sort link
     {{ $dataset->orderbyLink('title', 'asc') }} <br />
+    -->
+    {!! $dataset !!}
 </p>
 
 

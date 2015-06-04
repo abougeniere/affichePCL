@@ -50,23 +50,35 @@ class WelcomeController extends Controller {
 
         $reader->setDelimiter(";");
 
+
+
         $data = $reader->fetchAll();
 
+        $headers = $reader->fetchOne();
         //->toHTML('table-csv-data with-header');
         //dd($data);
 
-        $headers = $reader->fetchOne();
+
         //dd($headers);
 
         $dataset = DataSet::source($data)->paginate(10)->getSet();
-        //dd($dataset);
 
-        $grid = DataGrid::source($dataset);
+
+       // dd($dataset);
+
+        $grid = DataGrid::source($data);
+        $index=0;
+        foreach ($headers as $header) {
+            //echo $index . " : " . $header . "<br>";
+            $grid->add($index++,$header, true); //field name, label, sortable
+        }
+        //$grid->paginate(10); //pagination
+
         //dd($grid);
 
         //return view('welcome')->with('grid', $grid);
         //return view('welcome', ['dataset' => $dataset]);
-        return view('welcome')->with('dataset', $dataset);
+        return view('welcome')->with('dataset', $grid);
 
 	}
 
