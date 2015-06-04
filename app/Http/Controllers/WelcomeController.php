@@ -72,7 +72,8 @@ class WelcomeController extends Controller {
             //echo $index . " : " . $header . "<br>";
             $grid->add($index++,$header, true); //field name, label, sortable
         }
-        //$grid->paginate(10); //pagination
+        $grid->paginate(10); //pagination
+        $grid->attributes(array("class"=>"table table-striped table-hover"));
 
         //dd($grid);
 
