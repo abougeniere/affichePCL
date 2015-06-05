@@ -45,40 +45,36 @@ class WelcomeController extends Controller {
     {
         echo getcwd() . "\n";
 
-
+        // CSV object
         $reader = Reader::createFromPath('../uploads/pcl.csv');
 
+        // CSV properties
         $reader->setDelimiter(";");
 
+        // Get CSV header
+        $headers = $reader->fetchOne();
+        $reader->setOffset(1);
 
-
+        // Get CSV datas
         $data = $reader->fetchAll();
 
-        $headers = $reader->fetchOne();
-        //->toHTML('table-csv-data with-header');
-        //dd($data);
-
-
-        //dd($headers);
-
+        // new Dataset from CSV
         $dataset = DataSet::source($data)->paginate(10)->getSet();
 
 
-       // dd($dataset);
-
+        // new dataGrid from dataSet
         $grid = DataGrid::source($data);
+
         $index=0;
         foreach ($headers as $header) {
-            //echo $index . " : " . $header . "<br>";
             $grid->add($index++,$header, true); //field name, label, sortable
         }
+
+        // Datagrid properties
         $grid->paginate(10); //pagination
         $grid->attributes(array("class"=>"table table-striped table-hover"));
 
-        //dd($grid);
-
-        //return view('welcome')->with('grid', $grid);
-        //return view('welcome', ['dataset' => $dataset]);
+        // Show view
         return view('welcome')->with('dataset', $grid);
 
 	}
